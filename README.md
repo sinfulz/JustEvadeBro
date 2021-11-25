@@ -181,6 +181,10 @@ Extra features I performed to ensure (basic) AV evasion is done right:
 
 These steps may not be necessary to evade AV. 
 
+Note: This is not a fully undetected bypass. As of 24/11/2021 @ 9:35 AM this works against Windows Defender (Security intelligence version 1.353.1502.0), but may not work against other AV. For detections see the links below:
+- https://www.virustotal.com/gui/file/8b69e249de782f1a0a082641eade27166fcbaea55fed73576ddd205c5c998e36?nocache=1
+- https://virusscan.jotti.org/en-US/filescanjob/m807xvtcky
+
 # PEzor!
 ```
 git clone https://github.com/phra/PEzor.git
