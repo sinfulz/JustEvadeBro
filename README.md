@@ -206,6 +206,6 @@ git clone https://github.com/phra/PEzor.git
 cd PEzor
 sudo bash install.sh
 bash PEzor.sh -h
-export PATH=$PATH:~/go/bin/:/opt/<location of PEzor>/PEzor:/opt/redteaming/PEzor/deps/donut_v0.9.3/:/opt/redteaming/PEzor/deps/wclang/_prefix_PEzor_/bin/
+export PATH=$PATH:~/go/bin/:/opt/PEzor:/opt/PEzor/deps/donut/:/opt/PEzor/deps/wclang/_prefix_PEzor_/bin/
 bash PEzor.sh -unhook -antidebug -text -self -sleep=120 binary.exe -z 2
 ```
