@@ -19,7 +19,12 @@ Credit Info: I have obtained a lot of this info through other Github repos, blog
 - https://github.com/phra/PEzor
 - https://github.com/CBHue/PyFuscation
 - https://github.com/danielbohannon/Invoke-Obfuscation
-- https://github.com/icyguider/Shhhloader (Flagged by AV now)
+- https://github.com/icyguider/Shhhloader
+- https://github.com/C-Sto/BananaPhone
+- https://github.com/postrequest/xeca
+- https://github.com/bats3c/darkarmour
+- https://github.com/loadenmb/tvasion
+- https://github.com/mkaring/ConfuserEx
 
 # Step one off evading Defender
 
