@@ -37,7 +37,8 @@ Adding a folder exclusion
 ```Add-MpPreference -ExclusionPath "C:\temp"```
 
 Checking exclusions
-```Get-MpPreference | Select-Object -Property ExclusionPath
+```
+Get-MpPreference | Select-Object -Property ExclusionPath
 
 ExclusionPath
 -------------
