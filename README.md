@@ -25,6 +25,7 @@ Credit Info: I have obtained a lot of this info through other Github repos, blog
 - https://github.com/bats3c/darkarmour
 - https://github.com/loadenmb/tvasion
 - https://github.com/mkaring/ConfuserEx
+- https://github.com/optiv/ScareCrow
 
 # Easiest way to evading Defender (Requires elevation)
 
