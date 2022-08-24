@@ -46,6 +46,9 @@ ExclusionPath
 {C:\temp}
 ```
 
+# Check All Windows Defender Definitions
+- https://www.microsoft.com/en-us/wdsi/definitions/antimalware-definition-release-notes
+
 # AMSI bypasses (working as of 17/01/2022)
 
 Multi-line bypass:
