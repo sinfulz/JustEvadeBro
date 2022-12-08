@@ -15,7 +15,12 @@ Yes, we are open to Pull Requests for Hacktoberfest! Please ensure its not spam 
 Credit Info: I have obtained a lot of this info through other Github repos, blogs, sites and more. I have tried to give as much credit to the original creator as possible, if I have not given you credit please contact me on Twitter: https://twitter.com/s1nfulz
 
 # Obfuscation Tools:
+Currently maintained:
+- https://github.com/obfuscar/obfuscar
+- https://github.com/mgeeky/ProtectMyTooling
+- https://github.com/h4wkst3r/InvisibilityCloak
 
+Curently not really maintained:
 - https://github.com/phra/PEzor
 - https://github.com/CBHue/PyFuscation
 - https://github.com/danielbohannon/Invoke-Obfuscation
