@@ -359,6 +359,9 @@ Serving HTTP on 0.0.0.0 port 80 ...
 6. If lucky, you may get a shell.
 
 # Getting go binaries past Defender!
+
+Binaries written in go can easily obfuscated to bypass Defender.
+
 Inspiration: https://twitter.com/snovvcrash/status/1540395267064741890?lang=en
 
 I ran the below commands on Windows, (using git & golang) however, the above Tweet shows that its definitely possible in Kali.
@@ -371,4 +374,5 @@ cd chisel
 garble -tiny -literals -seed=random build main.go
 ```
 No detections against Windows Defender as of 30/03/2023: https://antiscan.me/scan/new/result?id=MlpqAEXx9ohJ
+
 (I had to use `upx` to get the binary smaller than 10mb as that is the limit for antiscan.me)
