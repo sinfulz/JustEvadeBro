@@ -19,18 +19,20 @@ Currently maintained:
 - https://github.com/obfuscar/obfuscar
 - https://github.com/mgeeky/ProtectMyTooling
 - https://github.com/h4wkst3r/InvisibilityCloak
+- https://github.com/icyguider/Shhhloader
 
 Curently not really maintained:
 - https://github.com/phra/PEzor
 - https://github.com/CBHue/PyFuscation
 - https://github.com/danielbohannon/Invoke-Obfuscation
-- https://github.com/icyguider/Shhhloader
 - https://github.com/C-Sto/BananaPhone
 - https://github.com/postrequest/xeca
 - https://github.com/bats3c/darkarmour
 - https://github.com/loadenmb/tvasion
 - https://github.com/mkaring/ConfuserEx
-- https://github.com/optiv/ScareCrow
+- https://github.com/Tylous/ScareCrow
+- https://github.com/h4wkst3r/InvisibilityCloak
+- https://github.com/NUL0x4C/AtomPePacker
 
 # Easiest way to evading Defender (Requires elevation)
 
