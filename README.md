@@ -34,6 +34,11 @@ Curently not really maintained:
 - https://github.com/h4wkst3r/InvisibilityCloak
 - https://github.com/NUL0x4C/AtomPePacker
 
+# Tools to check for antivirus-detected bytes in files
+- https://github.com/gatariee/gocheck
+- https://github.com/matterpreter/DefenderCheck
+- https://github.com/rasta-mouse/ThreatCheck
+
 # Easiest way to evading Defender (Requires elevation)
 
 Turning off Windows Defender:
@@ -55,6 +60,10 @@ ExclusionPath
 
 # Check All Windows Defender Definitions
 - https://www.microsoft.com/en-us/wdsi/definitions/antimalware-definition-release-notes
+
+# AMSI bypass generators
+- https://4msibypass.com
+- https://amsi.fail
 
 # AMSI bypasses (working as of 04/04/2024)
 
