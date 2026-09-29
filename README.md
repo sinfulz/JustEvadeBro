@@ -35,9 +35,16 @@ Curently not really maintained:
 - https://github.com/NUL0x4C/AtomPePacker
 
 # Tools to check for antivirus-detected bytes in files
-- https://github.com/gatariee/gocheck
-- https://github.com/matterpreter/DefenderCheck
-- https://github.com/rasta-mouse/ThreatCheck
+- [gocheck](https://github.com/gatariee/gocheck)
+- [DefenderCheck](https://github.com/matterpreter/DefenderCheck)
+- [ThreatCheck](https://github.com/rasta-mouse/ThreatCheck)
+- [AMSITrigger](https://github.com/RythmStick/AMSITrigger)
+
+# PowerShell Scripts to help bypass AMSI
+- [TrollAMSI](https://github.com/cybersectroll/TrollAMSI)
+- [TrollAMSI2](https://github.com/cybersectroll/TrollAMSI2)
+- [Null-4MSI](https://web.archive.org/web/20250723035656/https://raw.githubusercontent.com/BlackShell256/Null-AMSI/refs/heads/main/Null-4MSI.ps1)
+- [AMSI Write Raid Bypass](https://raw.githubusercontent.com/V-i-x-x/AMSI-BYPASS/main/POC.ps1) 
 
 # Easiest way to evading Defender (Requires elevation)
 
@@ -56,6 +63,17 @@ Get-MpPreference | Select-Object -Property ExclusionPath
 ExclusionPath
 -------------
 {C:\temp}
+```
+
+# Downgrading to PowerShell 2.0
+PowerShell 2.0 lacks AMSI support and often remains installed alongside newer versions, making it a potential bypass vector. It can be launched directly using the following command-line argument:
+```
+powershell.exe -version 2
+```
+
+Alternatively, to use a PowerShell script with version 2.0, add the following line at the beginning of your script:
+```
+Set-StrictMode -Version 2
 ```
 
 # Check All Windows Defender Definitions
